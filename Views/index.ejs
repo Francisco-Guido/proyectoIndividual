@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notitas</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="brand-wrapper">
+                <div class="logo">
+                   <img src="../images/logo.svg" alt="">
+                </div>
+            </div>        
+        </nav>
+    </header>
+    <main>
+        <section class="new">
+            <form method="POST" action="/" enctype="application/json">
+                <input type="text" id="txtTitulo" name="titulo" placeholder="Título"/>
+                <textarea id="txtTexto" name="texto" cols="30" placeholder="Añade una nota..."></textarea>
+                <button type="submit">Crear</button>
+            </form>
+        </section>
+        <section class="list">
+            <% for(let i = 0; i < notas.length; i++) { %>
+            <div class="note">
+                   <h2> <%= notas[i].Titulo %></h2>
+                   <p><%=notas[i].Texto %></p>
+                <div class="edit">
+                    <a href="details?Id=<%=notas[i].Id %>"><i class="far fa-edit"></i></a>
+                    <form method="POST" action="/delete" enctype="application/json">
+                        <input type="hidden" id="txtId" name="Id" value="<%=notas[i].Id %>"/>
+                        <button type="submit"><i class="far fa-trash-alt"></i></button>
+                    </form>
+                </div>
+            </div>
+            <% } %> 
+        </div>  
+        </section>
+    </main>
+</body>
+</html>
